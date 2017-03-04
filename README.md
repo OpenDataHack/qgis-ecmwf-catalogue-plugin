@@ -1,3 +1,4 @@
+![](images/ecmwf.png)
 # qgis-ecmwf-catalogue-plugin
 This plugin is an interface to the ECMWF data catalogue.
 
