@@ -10,7 +10,7 @@ server.retrieve({
     'step'    : "0",
     'type'    : "an",
     'levtype' : "sfc",   
-    'param'   : "165.128/41.128",		#files that are downloaded, separated by /
+    'param'   : "165.128/41.128",		#files that are downloaded, separated by / , .128 is a constat for dataset, number before it is type of data - naming list http://apps.ecmwf.int/codes/grib/param-db
     'grid'    : "0.75/0.75",
     'target'  : "testingData.grib"		#name of target file
     })
