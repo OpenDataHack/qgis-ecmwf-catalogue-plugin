@@ -1,5 +1,5 @@
+from __future__ import print_function
 import sys
-sys.path.append("/Library/Frameworks/Python.framework/Versions/3.5/lib/python3.5/site-packages")
 
 from Loader import loader
 from tkinter import *
@@ -9,13 +9,11 @@ class qgis(Frame):
     def __init__(self, master, load):
         super(qgis,self).__init__(master)
         self.load = load
-        months = ["Select a month", "1", "2", "3", "4", "5", "6", "7", "8", "9", "10", "11", "12"]
+        months = ["1", "2", "3", "4", "5", "6", "7", "8", "9", "10", "11", "12"]
         items = ["2 meter Temperature", "10 meters Uwind", "10 meters Vwind", "Specific Humidity", "Surface Pressure", "Total Column Water Vapour", "Snow Depth", "Snowfall", "Relative Humidity", "Total Cloud Cover", "Solar Duration"]
         self.returnNum = ['snowDepth', 'totalCloudCover', '10mVwind', '2mTemperature', 'totalColumnWaterVapour', 'specificHumidity', 'solarDuration', 'snowfall', 'relativeHumidity', 'surfacePressure', '10mUwind']
         years = []
         days = []
-        days.append("Select a day")
-        years.append("Select a year")
         for i in range(1979, 2017, 1):
             years.append(i)
         for i in range(1, 32):
@@ -31,27 +29,27 @@ class qgis(Frame):
         self.daydrop1 = OptionMenu(self.firstpage, variableFirst, *days)
         variableSecond = StringVar(self.firstpage)
         self.daydrop2 = OptionMenu(self.firstpage, variableSecond, *days)
-        variableSecond.set("Select a day")
+        variableSecond.set("1")
         self.daydrop2.grid(row = 1, padx = 495, pady = 15, sticky = "nw")
-        variableFirst.set("Select a day")
+        variableFirst.set("1")
         self.daydrop1.grid(row = 1, padx = 160, pady = 15, sticky = "nw")
         variable = StringVar(self.firstpage)
         self.firstdrop = OptionMenu(self.firstpage, variable, *months)
-        variable.set("Select a month")
+        variable.set("1")
         self.firstdrop.grid(row = 1, padx = 70, pady = 45, sticky = "nw")
         self.dateL2 = Label(self.firstpage, justify = "left", text = "to", font = ("Arial", 10, "bold"), height = 1)
         self.dateL2.grid(row = 1, padx = 380, pady = 50, sticky = "nw")
         variable2 = StringVar(self.firstpage)
         self.secondrop = OptionMenu(self.firstpage, variable2, *years)
-        variable2.set("Select a year")
+        variable2.set("1979")
         self.secondrop.grid(row=1, padx = 235, pady = 45, sticky = "nw")
         variable3 = StringVar(self.firstpage)
         self.thirdrop = OptionMenu(self.firstpage, variable3, *months)
-        variable3.set("Select a month")
+        variable3.set("1")
         self.thirdrop.grid(row = 1, padx = 400, pady = 45, sticky = "nw")
         variable4 = StringVar(self.firstpage)
         self.fourthdrop = OptionMenu(self.firstpage, variable4, *years)
-        variable4.set("Select a year")
+        variable4.set("1979")
         self.fourthdrop.grid(row = 1, padx = 565, pady = 45, sticky = "nw")
         CheckVar1 = IntVar(self.firstpage)
         CheckVar2 = IntVar(self.firstpage)

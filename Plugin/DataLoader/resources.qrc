@@ -1,0 +1,5 @@
+<RCC>
+    <qresource prefix="/plugins/DataLoader" >
+        <file>icon.png</file>
+    </qresource>
+</RCC>
