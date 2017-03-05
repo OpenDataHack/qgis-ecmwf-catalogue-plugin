@@ -13,3 +13,5 @@ You are then required to log into this page and create an access key:
 
 ## Visualising data
 You will need QGIS (obviously) and Crayfish plugin to be able to view the data.
+
+![](images/doris_qgis.gif)
