@@ -198,7 +198,12 @@ class DataLoader:
                 if self.dlg.listWidget.isItemSelected(self.dlg.listWidget.item(i)) == True:
 ##                    selectedItems.append(self.dlg.listWidget.indexFromItem(self.dlg.listWidget.item(i)))
                     print(i)
-            
+            ch1 = self.dlg.checkBox.isChecked()
+            ch2 = self.dlg.checkBox_2.isChecked()
+            ch3 = self.dlg.checkBox_3.isChecked()
+            ch4 = self.dlg.checkBox_4.isChecked()
+            date1 = self.dlg.dateEdit.date().toPyDate()
+            date2 = self.dlg.dateEdit_2.date().toPyDate()
             # Do something useful here - delete the line containing pass and
             # substitute with your code.
             pass
