@@ -36,7 +36,7 @@ class loader():
 			idNumber = self.IDdict[x].rstrip()	#.rstrip() is for removing newline character that is appended at the end of string
 			self.param+=idNumber+".128/"
 		self.param = self.param[:-1]
-		self.setFileName("name1")
+		self.setFileName("example")
 
 	def setFileName(self, name):
 		self.target=self.parentDir+'/files/'+name+".grib"
@@ -44,11 +44,16 @@ class loader():
 
 	def downloadData(self):
 		try:
-			down = Downloader()
-			down.downloadData(self.time, self.date, self.param, self.target)
-			print("data is downloaded")
+			if(self.time==""):
+				print("No time was selected")
+			elif(self.param==[]):
+				print("No parameters were selected")
+			else:
+				down = Downloader()
+				down.downloadData(self.time, self.date, self.param, self.target)
+				print("data is downloaded")
 		except:
-			print ("Unexpected error:" + sys.exc_info()[0])
+			print ("Unexpected error:")
 		
 
 	#function that loads dictionary of types of data and it's IDs 
