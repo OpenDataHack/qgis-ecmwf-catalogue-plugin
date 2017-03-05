@@ -9,8 +9,9 @@ class qgis(Frame):
     def __init__(self, master, load):
         super(qgis,self).__init__(master)
         self.load = load
-        months = ["Select a month", "January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"]
+        months = ["Select a month", "1", "2", "3", "4", "5", "6", "7", "8", "9", "10", "11", "12"]
         items = ["2 meter Temperature", "10 meters Uwind", "10 meters Vwind", "Specific Humidity", "Surface Pressure", "Total Column Water Vapour", "Snow Depth", "Snowfall", "Relative Humidity", "Total Cloud Cover", "Solar Duration"]
+        self.returnNum = ['snowDepth', 'totalCloudCover', '10mVwind', '2mTemperature', 'totalColumnWaterVapour', 'specificHumidity', 'solarDuration', 'snowfall', 'relativeHumidity', 'surfacePressure', '10mUwind']
         years = []
         days = []
         days.append("Select a day")
@@ -57,10 +58,10 @@ class qgis(Frame):
         CheckVar3 = IntVar(self.firstpage)
         CheckVar4 = IntVar(self.firstpage)
         self.label3 = Label(self.firstpage, justify = "left", text = "Select the times: ", font = ("Arial", 10, "bold"), height = 1)
-        self.C1 = Checkbutton(self.firstpage, text = "00:00:00", onvalue=1, offvalue=0, height=5, width=20, justify = "left")
-        self.C2 = Checkbutton(self.firstpage, text = "06:00:00", onvalue=1, offvalue=0, height=5, width=20, justify = "left")
-        self.C3 = Checkbutton(self.firstpage, text = "12:00:00", onvalue=1, offvalue=0, height=5, width=20, justify = "left")
-        self.C4 = Checkbutton(self.firstpage, text = "18:00:00", onvalue=1, offvalue=0, height=5, width=20, justify = "left")
+        self.C1 = Checkbutton(self.firstpage, variable = CheckVar1, text = "00:00:00", onvalue=1, offvalue=0, height=5, width=20, justify = "left")
+        self.C2 = Checkbutton(self.firstpage, variable = CheckVar2, text = "06:00:00", onvalue=1, offvalue=0, height=5, width=20, justify = "left")
+        self.C3 = Checkbutton(self.firstpage, variable = CheckVar3, text = "12:00:00", onvalue=1, offvalue=0, height=5, width=20, justify = "left")
+        self.C4 = Checkbutton(self.firstpage, variable = CheckVar4, text = "18:00:00", onvalue=1, offvalue=0, height=5, width=20, justify = "left")
         self.label3.grid(row = 1, padx = 0, pady = 105, sticky = "nw")
         self.C1.grid(row = 1, padx = 90, pady=70, sticky = "nw")
         self.C2.grid(row = 1, padx = 190, pady=70, sticky = "nw")
@@ -73,16 +74,39 @@ class qgis(Frame):
             listbox1.insert(END, item)
         listbox1.grid(row = 1, padx = 90, pady = 150, sticky = "nw")
         def getData(variable, variable2, variable3, variable4, CheckVar1, CheckVar2, CheckVar3, CheckVar4, listbox1, variableFirst, variableSecond):
-            values = [listbox1.get(idx) for idx in listbox1.curselection()]
-            month1 = variable.get()
+            values = [self.returnNum[idx] for idx in listbox1.curselection()]
+            if(int(variable.get()) < 10):
+                month1 ="0"
+            month1 += variable.get()
             year1 = variable2.get()
-            month2 = variable.get()
-            year2 = variable.get()
-            zero = CheckVar1.get()
-            six = CheckVar2.get()
-            twelve = CheckVar3.get()
-            eighteen = CheckVar4.get()
+            if(int(variableFirst.get()) <10):
+                day1 ="0"
+            day1 += variableFirst.get()
+            if(int(variable3.get()) < 10):
+                month2 ="0"
+            month2 += variable3.get()
+            year2 = variable4.get()
+            if(int(variableSecond.get()) <10):
+                day2 ="0"
+            day2 += variableSecond.get()
+            times = CheckVar1.get()+CheckVar2.get()+CheckVar3.get()+CheckVar4.get()
             print(values)
+            #calculating time from checkbox and putting it into right format
+            time=""
+            if(CheckVar1.get()):
+                time+="00/"
+            if(CheckVar2.get()):
+                time+="06/"
+            if(CheckVar3.get()):
+                time+="12/"
+            if(CheckVar4.get()):
+                time+="18/"
+            time = time[:-1]
+            date = year1+"-"+month1+"-"+day1+"/to/"+year2+"-"+month2+"-"+day2
+            print(time)
+            print(date)
+            load.loadData(time, date, values)
+            load.downloadData()
             
         self.button1 = Button(self.firstpage, justify = "center", text = "Get Data", command = lambda:getData(variable, variable2, variable3, variable4, CheckVar1, CheckVar2, CheckVar3, CheckVar4, listbox1, variableFirst, variableSecond), font = ("Arial", 10, "bold"), height = 1, width = 20)
         self.button1.grid(row = 1, padx = 400, pady = 250, sticky = "nw")

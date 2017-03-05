@@ -36,6 +36,7 @@ class loader():
 			idNumber = self.IDdict[x].rstrip()	#.rstrip() is for removing newline character that is appended at the end of string
 			self.param+=idNumber+".128/"
 		self.param = self.param[:-1]
+		self.setFileName("name1")
 
 	def setFileName(self, name):
 		self.target=self.parentDir+'/files/'+name+".grib"
@@ -50,8 +51,8 @@ class loader():
 	def loadNameIDMap(self, fileName):
 		s = open(self.parentDir+'/files/'+fileName, 'r')
 		for line in s:
-			print(line)
+			#print(line)
 			splits = line.split(' ')
-			print(splits)
+			#print(splits)
 			self.IDdict[splits[0]] = splits[1]
-		print (self.IDdict.keys())
+		#print (self.IDdict.keys())
