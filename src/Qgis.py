@@ -1,5 +1,5 @@
+from __future__ import print_function
 import sys
-sys.path.append("/Library/Frameworks/Python.framework/Versions/3.5/lib/python3.5/site-packages")
 
 from Loader import loader
 from tkinter import *
