@@ -1,6 +1,6 @@
 temperature 130
-Uwind 131
-Vwind 132
+10mUwind 165
+10mVwind 166
 specificHumidity 133
 surfacePressure 134
 totalColumnWaterVapour 137

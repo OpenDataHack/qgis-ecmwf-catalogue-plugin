@@ -2,3 +2,5 @@
 examples/complicatedData\.grib
 
 src/test1\.grib
+
+*.grib
