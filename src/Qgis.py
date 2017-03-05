@@ -1,14 +1,16 @@
 import sys
 sys.path.append("/Library/Frameworks/Python.framework/Versions/3.5/lib/python3.5/site-packages")
 
+from Loader import loader
 from tkinter import *
 from tkinter import ttk
 
 class qgis(Frame):
-    def __init__(self, master):
+    def __init__(self, master, load):
         super(qgis,self).__init__(master)
+        self.load = load
         months = ["Select a month", "January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"]
-        items = ["Temperature", "Uwind", "Vwind", "Specific Humidity", "Surface Pressure", "Total Column Water Vapour", "Snow Depth", "Snowfall", "Relative Humidity", "Total Cloud Cover", "Wind Speed", "Solar Duration", "Pressure"]
+        items = ["2 meter Temperature", "10 meters Uwind", "10 meters Vwind", "Specific Humidity", "Surface Pressure", "Total Column Water Vapour", "Snow Depth", "Snowfall", "Relative Humidity", "Total Cloud Cover", "Solar Duration"]
         years = []
         days = []
         days.append("Select a day")
@@ -86,11 +88,5 @@ class qgis(Frame):
         self.button1.grid(row = 1, padx = 400, pady = 250, sticky = "nw")
     
         
-        
-
-root = Tk()
-root.title("QGIS Plugin Extension")
-root.geometry("707x380")
-visual = qgis(root)
-root.mainloop()
+       
 
