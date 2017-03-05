@@ -43,8 +43,13 @@ class loader():
 
 
 	def downloadData(self):
-		down = Downloader()
-		down.downloadData(self.time, self.date, self.param, self.target)
+		try:
+			down = Downloader()
+			down.downloadData(self.time, self.date, self.param, self.target)
+			print("data is downloaded")
+		except:
+			print ("Unexpected error:" + sys.exc_info()[0])
+		
 
 	#function that loads dictionary of types of data and it's IDs 
 	#example param: 'NameIDMap'
