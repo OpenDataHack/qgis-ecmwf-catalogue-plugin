@@ -1,4 +1,4 @@
-temperature 130
+2mTemperature 167
 10mUwind 165
 10mVwind 166
 specificHumidity 133
@@ -8,6 +8,5 @@ snowDepth 141
 snowfall 144
 relativeHumidity 157
 totalCloudCover 164
-windSpeed 10
 solarDuration 46
-pressure 54
+
