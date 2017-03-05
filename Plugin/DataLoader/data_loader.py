@@ -20,6 +20,7 @@
  *                                                                         *
  ***************************************************************************/
 """
+from __future__ import print_function
 from PyQt4.QtCore import QSettings, QTranslator, qVersion, QCoreApplication
 from PyQt4.QtGui import QAction, QIcon
 # Initialize Qt resources from file resources.py
@@ -27,6 +28,7 @@ import resources
 # Import the code for the dialog
 from data_loader_dialog import DataLoaderDialog
 import os.path
+from Loader import loader
 
 
 class DataLoader:
@@ -185,6 +187,12 @@ class DataLoader:
         somelist = ["Snow Depth", "Total Cloud Cover", "10m V Wind", "2m Temperature", "Total Column Water Vapour", "Specific Humidity", "Solar Duration", "Snowfall", "Relative Humidity", "Surface Pressure", "10m U Wind"]
         self.dlg.listWidget.addItems(somelist)
         
+
+        print("loading classes")
+	#class creating
+        load = loader()
+
+
         # show the dialog
         self.dlg.show()
         # Run the dialog event loop
@@ -198,12 +206,27 @@ class DataLoader:
                 if self.dlg.listWidget.isItemSelected(self.dlg.listWidget.item(i)) == True:
 ##                    selectedItems.append(self.dlg.listWidget.indexFromItem(self.dlg.listWidget.item(i)))
                     print(i)
+                    resultlist.append(i)
             ch1 = self.dlg.checkBox.isChecked()
             ch2 = self.dlg.checkBox_2.isChecked()
             ch3 = self.dlg.checkBox_3.isChecked()
             ch4 = self.dlg.checkBox_4.isChecked()
+
+            #calculating time from checkbox and putting it into right format
+            time=""
+            if(ch1):
+                time+="00/"
+            if(ch2):
+                time+="06/"
+            if(ch3):
+                time+="12/"
+            if(ch4):
+                time+="18/"
+            time = time[:-1]
             date1 = self.dlg.dateEdit.date().toPyDate()
             date2 = self.dlg.dateEdit_2.date().toPyDate()
+            load.loadData(time, date1.strftime("%Y-%m-%d")+"/to/"+date2.strftime("%Y-%m-%d"), resultlist)
+            load.downloadData()
             # Do something useful here - delete the line containing pass and
             # substitute with your code.
             pass
