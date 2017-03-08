@@ -184,8 +184,14 @@ class DataLoader:
 
     def run(self):
         """Run method that performs all the real work"""
-        somelist = ["Snow Depth", "Total Cloud Cover", "10m V Wind", "2m Temperature", "Total Column Water Vapour", "Specific Humidity", "Solar Duration", "Snowfall", "Relative Humidity", "Surface Pressure", "10m U Wind"]
-        self.dlg.listWidget.addItems(somelist)
+
+	print("Checking dependencies")
+	depend = self.checkDependencies()
+        print (depend)
+
+
+        ChoiceList = ["Snow Depth", "Total Cloud Cover", "10m V Wind", "2m Temperature", "Total Column Water Vapour", "Specific Humidity", "Solar Duration", "Snowfall", "Relative Humidity", "Surface Pressure", "10m U Wind"]
+        self.dlg.listWidget.addItems(ChoiceList)
         
 
         print("loading classes")
@@ -201,12 +207,12 @@ class DataLoader:
         resultlist = []
         if result:
             items = self.dlg.listWidget.count()
-            selectedItems = []
             for i in range(items):
                 if self.dlg.listWidget.isItemSelected(self.dlg.listWidget.item(i)) == True:
 ##                    selectedItems.append(self.dlg.listWidget.indexFromItem(self.dlg.listWidget.item(i)))
                     print(i)
                     resultlist.append(i)
+
             ch1 = self.dlg.checkBox.isChecked()
             ch2 = self.dlg.checkBox_2.isChecked()
             ch3 = self.dlg.checkBox_3.isChecked()
@@ -227,6 +233,15 @@ class DataLoader:
             date2 = self.dlg.dateEdit_2.date().toPyDate()
             load.loadData(time, date1.strftime("%Y-%m-%d")+"/to/"+date2.strftime("%Y-%m-%d"), resultlist)
             load.downloadData()
-            # Do something useful here - delete the line containing pass and
-            # substitute with your code.
+ 
             pass
+
+    def checkDependencies(self):
+        try:
+	    import crayfish
+	    import qgis
+	    import ecmwfapi
+	except ImportError:
+	    print ("missing some imports: "+sys.exc_info()[0])
+	    return "missing some imports: "+sys.exc_info()[0]
+        return "All dependencies are installed"

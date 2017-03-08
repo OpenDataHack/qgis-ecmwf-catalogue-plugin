@@ -56,15 +56,3 @@ class loader():
 				print("data is downloaded")
 		except:
 			print ("Unexpected error:")
-		
-
-	#function that loads dictionary of types of data and it's IDs 
-	#example param: 'NameIDMap'
-	def loadNameIDMap(self, fileName):
-		s = open(self.parentDir+'/files/'+fileName, 'r')
-		for line in s:
-			#print(line)
-			splits = line.split(' ')
-			#print(splits)
-			self.IDdict[splits[0]] = splits[1]
-		#print (self.IDdict.keys())
