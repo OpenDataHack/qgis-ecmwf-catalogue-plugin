@@ -16,12 +16,16 @@ version=0.2
 author=Sagar, Adam
 email=jas_96@hotmail.co.uk, ak2g15@soton.ac.uk
 
-about=This plugin requires Crayfish plugin and ECMWF python package installed.
- ECMWF python package can be installed from: https://software.ecmwf.int/wiki/display/WEBAPI/Accessing+ECMWF+data+servers+in+batch#AccessingECMWFdataserversinbatch-python 
- You will also need to sign up with the ECMWF website: http://apps.ecmwf.int/datasets/data/interim-full-daily/levtype=sfc/ 
+about=This plugin is for simple/fast importing of data from ECMWF into QGIS and displaying them using Crayfish plugin. You firstly need to install required modules and then get an access key from ECMWF.
+ <p>Required modules:
+ ECMWF python package - can be installed from: https://software.ecmwf.int/wiki/display/WEBAPI/Accessing+ECMWF+data+servers+in+batch#AccessingECMWFdataserversinbatch-python 
+ (This plugin is using python 2 so you may need to use pip2 command to install right version)
+ Crayfish plugin - https://github.com/lutraconsulting/qgis-crayfish-plugin
+ <p>Getting ECMWF key:
+ You also need to sign up with the ECMWF website: http://apps.ecmwf.int/datasets/data/interim-full-daily/levtype=sfc/ 
  You are then required to log into this page and create an access key
 
-tags=Weather, Crayfish, ECMWF
+tags=Weather,Crayfish,ECMWF,open data
 
 tracker=https://github.com/OpenDataHack/qgis-ecmwf-catalogue-plugin/issues
 repository=https://github.com/OpenDataHack/qgis-ecmwf-catalogue-plugin
@@ -30,7 +34,8 @@ repository=https://github.com/OpenDataHack/qgis-ecmwf-catalogue-plugin
 # Recommended items:
 
 # Uncomment the following line and add your changelog:
-# changelog=
+changelog=<p>0.2 - Added description and instruction for installing dependencies
+ <p>0.1 - Initial release
 
 # Tags are comma separated with spaces allowed
 tags=grib netcdf
