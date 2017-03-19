@@ -3,6 +3,11 @@
 This plugin is an interface to the ECMWF data catalogue.
 
 # Requirements
+## Packages
+ ECMWF python package - can be installed from: https://software.ecmwf.int/wiki/display/WEBAPI/Accessing+ECMWF+data+servers+in+batch#AccessingECMWFdataserversinbatch-python 
+ (This plugin is using python 2 so you may need to use pip2 command to install right version)
+ Crayfish plugin - https://github.com/lutraconsulting/qgis-crayfish-plugin
+
 ## Registration
 
 You will need to first sign up with the ECMWF website:
@@ -13,5 +18,6 @@ You are then required to log into this page and create an access key:
 
 ## Visualising data
 You will need QGIS (obviously) and Crayfish plugin to be able to view the data.
+
 
 ![](images/doris_qgis.gif)
