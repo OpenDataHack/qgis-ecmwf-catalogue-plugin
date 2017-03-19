@@ -9,15 +9,22 @@
 [general]
 name=Data Loader
 qgisMinimumVersion=2.0
-description=Plugin for Data visualisation
-version=0.1
-author=Sagar
-email=jas_96@hotmail.co.uk
+description=Plugin for loading data from ECMWF (European Centre for Medium-Range Weather Forecasts) data catalogue into Crayfish plugin to visualise data. 
 
-about=Data plugin
 
-tracker=https://github.com/saberraz/qgis-ecmwf-catalogue-plugin/issues
-repository=https://github.com/saberraz/qgis-ecmwf-catalogue-plugin/
+version=0.2
+author=Sagar, Adam
+email=jas_96@hotmail.co.uk, ak2g15@soton.ac.uk
+
+about=This plugin requires Crayfish plugin and ECMWF python package installed.
+ ECMWF python package can be installed from: https://software.ecmwf.int/wiki/display/WEBAPI/Accessing+ECMWF+data+servers+in+batch#AccessingECMWFdataserversinbatch-python 
+ You will also need to sign up with the ECMWF website: http://apps.ecmwf.int/datasets/data/interim-full-daily/levtype=sfc/ 
+ You are then required to log into this page and create an access key
+
+tags=Weather, Crayfish, ECMWF
+
+tracker=https://github.com/OpenDataHack/qgis-ecmwf-catalogue-plugin/issues
+repository=https://github.com/OpenDataHack/qgis-ecmwf-catalogue-plugin
 # End of mandatory metadata
 
 # Recommended items:
@@ -28,7 +35,7 @@ repository=https://github.com/saberraz/qgis-ecmwf-catalogue-plugin/
 # Tags are comma separated with spaces allowed
 tags=grib netcdf
 
-homepage=https://github.com/saberraz/qgis-ecmwf-catalogue-plugin/
+homepage=https://github.com/OpenDataHack/qgis-ecmwf-catalogue-plugin
 category=Plugins
 icon=icon.png
 # experimental flag
