@@ -29,6 +29,7 @@ import resources
 from data_loader_dialog import DataLoaderDialog
 import os.path
 from Loader import loader
+from pop_up_dialog import PopUpDialog
 
 
 class DataLoader:
@@ -193,7 +194,7 @@ class DataLoader:
         ChoiceList = ["Snow Depth", "Total Cloud Cover", "10m V Wind", "2m Temperature", "Total Column Water Vapour", "Specific Humidity", "Solar Duration", "Snowfall", "Relative Humidity", "Surface Pressure", "10m U Wind"]
         self.dlg.listWidget.clear() #widget needs to be cleared every time we open window, otherwise it would keep adding elements
         self.dlg.listWidget.addItems(ChoiceList)
-        
+
 
         print("loading classes")
 	#class creating
@@ -205,8 +206,8 @@ class DataLoader:
         # Run the dialog event loop
         result = self.dlg.exec_()
         # See if OK was pressed
-        resultlist = []
         if result:
+	    resultlist = []
             items = self.dlg.listWidget.count()
             for i in range(items):
                 if self.dlg.listWidget.isItemSelected(self.dlg.listWidget.item(i)) == True:
@@ -230,12 +231,19 @@ class DataLoader:
             if(ch4):
                 time+="18/"
             time = time[:-1]
-            date1 = self.dlg.dateEdit.date().toPyDate()
-            date2 = self.dlg.dateEdit_2.date().toPyDate()
-            load.loadData(time, date1.strftime("%Y-%m-%d")+"/to/"+date2.strftime("%Y-%m-%d"), resultlist)
-            load.downloadData()
+	    if time == "" :
+		self.popup = PopUpDialog("Choose at least one time of day")
+		self.popup.show()
+	    elif resultlist == []:
+		self.popup = PopUpDialog("Choose at least one type of data")
+		self.popup.show()
+	    else:
+		date1 = self.dlg.dateEdit.date().toPyDate()
+                date2 = self.dlg.dateEdit_2.date().toPyDate()
+                load.loadData(time, date1.strftime("%Y-%m-%d")+"/to/"+date2.strftime("%Y-%m-%d"), resultlist)
+                load.downloadData()
  
-            pass
+                pass
 
     def checkDependencies(self):
         try:

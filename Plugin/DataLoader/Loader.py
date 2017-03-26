@@ -1,5 +1,6 @@
 from __future__ import print_function
 import os
+import time
 from DownloadData import Downloader
 import tempfile
 import crayfish
@@ -7,6 +8,8 @@ import crayfish.plugin_layer
 from qgis.core import *
 from qgis.gui import *
 from qgis.utils import iface
+from pop_up_dialog import PopUpDialog
+from PyQt4.QtCore import QSettings, QTranslator, qVersion, QCoreApplication
 
 
 class loader():
@@ -35,15 +38,20 @@ class loader():
 
 
 	def downloadData(self):
+		self.dlg = PopUpDialog("Your choices are beeing processed ...")
+		self.dlg.show()
+		print("Showing dialog")
 		if(self.time==""):
-			print("No time was selected")
+			self.dlg.changeText("No time was selected")
 		elif(self.param==[]):
-			print("No parameters were selected")
+			self.dlg.changeText("No parameters were selected")
 		else:
+			self.dlg.changeText("downloading data")
 			down = Downloader()
 			down.downloadData(self.time, self.date, self.param, self.target)
-			print("data is downloaded")
+			self.dlg.changeText("Data is downloaded, displaying data ...")
 			layer = crayfish.plugin_layer.CrayfishPluginLayer(self.tempDir+"/downloadFile.grib")
 			QgsMapLayerRegistry.instance().addMapLayer(layer)
-			print("layer displayed")
+			self.dlg.changeText("Layer is displayed")
+		time.sleep(12.5)
 
