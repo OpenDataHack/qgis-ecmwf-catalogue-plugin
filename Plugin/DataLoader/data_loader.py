@@ -191,6 +191,7 @@ class DataLoader:
 
 
         ChoiceList = ["Snow Depth", "Total Cloud Cover", "10m V Wind", "2m Temperature", "Total Column Water Vapour", "Specific Humidity", "Solar Duration", "Snowfall", "Relative Humidity", "Surface Pressure", "10m U Wind"]
+        self.dlg.listWidget.clear() #widget needs to be cleared every time we open window, otherwise it would keep adding elements
         self.dlg.listWidget.addItems(ChoiceList)
         
 
