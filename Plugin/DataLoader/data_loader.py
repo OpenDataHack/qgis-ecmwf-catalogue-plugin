@@ -241,7 +241,6 @@ class DataLoader:
 		date1 = self.dlg.dateEdit.date().toPyDate()
                 date2 = self.dlg.dateEdit_2.date().toPyDate()
                 load.loadData(time, date1.strftime("%Y-%m-%d")+"/to/"+date2.strftime("%Y-%m-%d"), resultlist)
-                load.downloadData()
  
                 pass
 
