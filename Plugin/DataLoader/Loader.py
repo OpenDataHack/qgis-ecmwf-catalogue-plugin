@@ -25,11 +25,9 @@ class loader():
 		self.IDList = [141, 164, 166, 167, 137, 133, 46, 144, 157, 134, 165]
 
 
-	def loadData(self, timeStr, date, param):
-		print("show dialog")
+	def downloadData(self, timeStr, date, param):
 		dlg = PopUpDialog("Loading data")
 		dlg.show()
-		print("is it up?")
 		self.timeStr = timeStr
 		self.date = date
 		print(param) 
@@ -48,20 +46,4 @@ class loader():
 		QgsMapLayerRegistry.instance().addMapLayer(layer)
 		dlg.changeText("Layer is displayed")
 		time.sleep(3.5)
-
-
-	def downloadData(self):
-		if(self.timeStr==""):
-			self.dlg.changeText("No time was selected")
-		elif(self.param==[]):
-			self.dlg.changeText("No parameters were selected")
-		else:
-			self.dlg.changeText("downloading data")
-			time.sleep(5.5)
-			down = Downloader()
-			down.downloadData(self.timeStr, self.date, self.param, self.target)
-			self.dlg.changeText("Data is downloaded, displaying data ...")
-			layer = crayfish.plugin_layer.CrayfishPluginLayer(self.tempDir+"/downloadFile.grib")
-			QgsMapLayerRegistry.instance().addMapLayer(layer)
-			self.dlg.changeText("Layer is displayed")
 

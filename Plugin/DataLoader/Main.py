@@ -26,13 +26,13 @@ from PyQt4.QtGui import QAction, QIcon
 # Initialize Qt resources from file resources.py
 import resources
 # Import the code for the dialog
-from data_loader_dialog import DataLoaderDialog
+from main_dialog import MainDialog
 import os.path
 from Loader import loader
 from pop_up_dialog import PopUpDialog
 
 
-class DataLoader:
+class Main:
     """QGIS Plugin Implementation."""
 
     def __init__(self, iface):
@@ -136,7 +136,7 @@ class DataLoader:
         """
 
         # Create the dialog (after translation) and keep reference
-        self.dlg = DataLoaderDialog()
+        self.dlg = MainDialog()
 
         icon = QIcon(icon_path)
         action = QAction(icon, text, parent)
@@ -240,7 +240,7 @@ class DataLoader:
 	    else:
 		date1 = self.dlg.dateEdit.date().toPyDate()
                 date2 = self.dlg.dateEdit_2.date().toPyDate()
-                load.loadData(time, date1.strftime("%Y-%m-%d")+"/to/"+date2.strftime("%Y-%m-%d"), resultlist)
+                load.downloadData(time, date1.strftime("%Y-%m-%d")+"/to/"+date2.strftime("%Y-%m-%d"), resultlist)
  
                 pass
 
