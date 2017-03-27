@@ -38,15 +38,15 @@ LOCALES =
 # translation
 SOURCES = \
 	__init__.py \
-	data_loader.py data_loader_dialog.py
+	Main.py main_dialog.py DownloadData.py Loader.py pop_up_dialog.py
 
 PLUGINNAME = DataLoader
 
 PY_FILES = \
 	__init__.py \
-	data_loader.py data_loader_dialog.py
+	Main.py main_dialog.py DownloadData.py Loader.py pop_up_dialog.py
 
-UI_FILES = data_loader_dialog_base.ui
+UI_FILES = main_dialog_base.ui pop_up_dialog.ui
 
 EXTRAS = metadata.txt icon.png
 

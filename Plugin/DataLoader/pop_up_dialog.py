@@ -1,14 +1,14 @@
 # -*- coding: utf-8 -*-
 """
 /***************************************************************************
- DataLoader
+ DataLoaderDialog
                                  A QGIS plugin
  Plugin for Data visualisation
                              -------------------
-        begin                : 2017-03-05
-        copyright            : (C) 2017 by Sagar
-        email                : jas_96@hotmail.co.uk
+        begin                : 2017-03-26
         git sha              : $Format:%H$
+        copyright            : (C) 2017 by Adam
+        email                : ak2g15@soton.ac.uk
  ***************************************************************************/
 
 /***************************************************************************
@@ -19,17 +19,30 @@
  *   (at your option) any later version.                                   *
  *                                                                         *
  ***************************************************************************/
- This script initializes the plugin, making it known to QGIS.
 """
 
+import os
 
-# noinspection PyPep8Naming
-def classFactory(iface):  # pylint: disable=invalid-name
-    """Load DataLoader class from file DataLoader.
+from PyQt4 import QtGui, uic
 
-    :param iface: A QGIS interface instance.
-    :type iface: QgsInterface
-    """
-    #
-    from .Main import Main
-    return Main(iface)
+FORM_CLASS, _ = uic.loadUiType(os.path.join(
+    os.path.dirname(__file__), 'pop_up_dialog.ui'))
+
+
+class PopUpDialog(QtGui.QDialog, FORM_CLASS):
+    def __init__(self, message, parent=None):
+        """Constructor."""
+        super(PopUpDialog, self).__init__(parent)
+        # Set up the user interface from Designer.
+        # After setupUI you can access any designer object by doing
+        # self.<objectname>, and you can use autoconnect slots - see
+        # http://qt-project.org/doc/qt-4.8/designer-using-a-ui-file.html
+        # #widgets-and-dialogs-with-auto-connect
+        self.setupUi(self)
+	btn = self.pushButton
+	btn.clicked.connect(self.close)
+	self.label.setText(message)
+
+    def changeText(self, message):
+	self.label.setText(message)
+    
